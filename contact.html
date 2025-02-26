@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LegalMind</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="style1.css" type="text/css" rel="Stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+
+    <title>Contact Form</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('nRkiNarshSvzovvmK');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+
+                // these IDs from the previous steps
+                emailjs.sendForm('service_yyqezg3', 'template_uj5xvuj', this)
+                    .then(function () {
+                        console.log('SUCCESS!');
+                        alert("We've Recieved Your Details , We Will Contact you Soon")
+
+                    }, function (error) {
+                        console.log('FAILED...Please try again', error);
+                    });
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <!--<div id="header-hero-container">-->
+    <header>
+        <div class="flex container">
+            <a id="logo" href="index.html">LegalMind</a>
+            <nav>
+
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#" id="open-popup">Login</a></li>
+                    <li id="close-flyout"><span class="fas fa-times"></span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <section id="contact">
+        <div class="container">
+            <h1> </h1>
+            <h2>Contact Us</h2>
+
+            <div class="flex">
+                <div id="form-container">
+                    <h3>Contact Form</h3>
+                    <form id="contact-form">
+                        <li><a href="#"></a></li>
+                        <!--<input type="hidden" name="from_name">-->
+                        <label>Name</label>
+                        <input type="text" name="name">
+                        <li><a href="#"></a></li>
+                        <label>Email</label>
+                        <input type="text" name="email">
+                        <li><a href="#"></a></li>
+                        <label>Message</label>
+                        <textarea name="message"></textarea>
+                        <li><a href="#"></a></li>
+                        <input type="submit" value="Send Message" class="mu-post-btn" name="submit">
+
+                        <!-- <button class="rounded">Send Message</button>-->
+                    </form>
+                </div>
+
+                <div id="address-container">
+                    <label>Address</label>
+                    <address>
+                        Vellore Institute of Technology , Vellore
+                    </address>
+
+
+
+                    <label>Email Address</label>
+                    <a href="#">Mohammadsuheb.abbas2021@vitstudent.ac.in</a>
+
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0410799269457!2d79.153744914822!3d12.969223190857457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad479f0ccbe067%3A0xfef222e5f36ecdeb!2sVellore%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1663677139786!5m2!1sen!2sin"
+                        width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup" class="close">&times;</span>
+            <div class="form-container">
+                <div id="login-section" class="active">
+                    <h2>Login</h2>
+                    <form id="login-form">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" name="email" required>
+
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="password" required>
+
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+
+                    <p><a href="#" id="go-to-signup" style="color: #007bff;">Don't have an account? Sign Up</a></p>
+                </div>
+
+                <div id="signup-section">
+                    <h2>Signup</h2>
+                    <form id="signup-form">
+                        <label for="signup-name">Name:</label>
+                        <input type="text" id="signup-name" name="name" required>
+
+                        <label for="signup-email">Email:</label>
+                        <input type="email" id="signup-email" name="email" required>
+
+                        <label for="signup-password">Password:</label>
+                        <input type="password" id="signup-password" name="password" required>
+
+                        <button type="submit" class="btn">Signup</button>
+                    </form>
+                    <p><a href="#" id="go-to-login" style="color: #007bff;">Already have an account? Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const popup = document.getElementById('popup');
+            const openPopup = document.getElementById('open-popup');
+            const closePopup = document.getElementById('close-popup');
+            const goToSignup = document.getElementById('go-to-signup');
+            const goToLogin = document.getElementById('go-to-login');
+            const formContainer = document.querySelector('.form-container');
+
+            openPopup?.addEventListener('click', () => {
+                popup?.classList.add('active');
+            });
+
+            closePopup?.addEventListener('click', () => {
+                popup?.classList.remove('active');
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup?.classList.remove('active');
+                }
+            });
+
+            goToSignup?.addEventListener('click', (e) => {
+                e.preventDefault();
+                formContainer?.classList.add('flip');
+            });
+
+            goToLogin?.addEventListener('click', (e) => {
+                e.preventDefault();
+                formContainer?.classList.remove('flip');
+            });
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+<footer>
+    <div class="flex container">
+        <div id="about" class="footer-about">
+            <h5>About Us</h5>
+            <p1>We are working on legal documents ML model</p1>
+
+        </div>
+
+        <div class="footer-quick-links">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="#Sub.html">Plans</a></li>
+
+                <li><a href="services.html">Services</a></li>
+
+                <li><a href="contact.html">Contact Us</a></li>
+
+            </ul>
+        </div>
+
+
+
+        <div class="footer-quick-links">
+            <h5>Follow Us</h5>
+            <ul>
+                <li><a href="https://github.com/SM-Abbas">Github</a></li>
+                <li><a href="https://www.instagram.com/abbasgamer_1/#">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/mohammad-suheb-abbas-026428220/">Linkedin</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <small>
+        Copyright &copy; 2025 All rights reserved </a>
+    </small>
+</footer>
+
+
+
+<script src="/app.js"></script>
+
+<script>
+    $(function () {
+        let headerElem = $('header');
+        let logo = $('#logo');
+        let navMenu = $('#nav-menu');
+        let navToggle = $('#nav-toggle');
+
+
+
+        navToggle.on('click', () => {
+            navMenu.css('right', '0');
+        });
+
+        $('#close-flyout').on('click', () => {
+            navMenu.css('right', '-100%');
+        });
+
+        $(document).on('click', (e) => {
+            let target = $(e.target);
+            if (!(target.closest('#nav-toggle').length > 0 || target.closest('#nav-menu').length > 0)) {
+                navMenu.css('right', '-100%');
+            }
+        });
+
+        $(document).scroll(() => {
+            let scrollTop = $(document).scrollTop();
+
+            if (scrollTop > 0) {
+                navMenu.addClass('is-sticky');
+                logo.css('color', '#000');
+                headerElem.css('background', '#fff');
+                navToggle.css('border-color', '#000');
+                navToggle.find('.strip').css('background-color', '#000');
+            } else {
+                navMenu.removeClass('is-sticky');
+                logo.css('color', '#b2aaaa');
+                headerElem.css('background', 'transparent');
+                navToggle.css('bordre-color', '#fff');
+                navToggle.find('.strip').css('background-color', '#fff');
+            }
+
+            headerElem.css(scrollTop >= 200 ? { 'padding': '0.5rem', 'box-shadow': '0 -4px 10px 1px #999' } : { 'padding': '1rem 0', 'box-shadow': 'none' });
+        });
+
+        $(document).trigger('scroll');
+    });
+
+</script>
+
+
+
+
+</html>

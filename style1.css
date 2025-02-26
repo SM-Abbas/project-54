@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #777;
+  line-height: 1.7;
+  background: #f0f7ff;
+}
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8ec5ff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+#home {
+    background-image:url(img/img1.jpg) ;
+    color: white;
+    text-align: center;
+    padding: 14rem 2rem;
+}
+
+.home-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.home-container .btn {
+    
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+
+* {
+  outline: none;
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #202522;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+#header-hero-container {
+  min-height: 600px;
+  height: calc(100vh);
+  position: relative;
+}
+
+header {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(201, 196, 196, 0.1);
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  background: #fff;
+}
+
+#logo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #282626;
+  text-decoration: none;
+}
+
+.logo:hover{
+   color: #b0d6ff;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #9c9191;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Apply blur to the background */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-content {
+    background: #f9f7f7;
+    padding: 20px 30px; /* Reduced padding */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 500px; /* Reduced minimum height */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center;
+    perspective: 100px;
+    gap: 15px; /* Add some space between elements */
+}
+
+.popup-content h2 {
+    margin: 10px 0; /* Reduced margin for the title */
+    font-size: 2rem;
+    color: #333;
+}
+
+.close {
+    position: absolute;
+    top: 1px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+
+
+
+
+.popup.active .popup-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+/* Login/Signup form sections */
+#login-section, #signup-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Flip Effect for Login and Signup Forms */
+.form-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.14s;
+}
+
+.form-container.flip {
+    transform: rotateY(180deg);
+}
+
+/* Login/Signup form sections */
+#login-section, #signup-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+#signup-section {
+    transform: rotateY(180deg);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Reduced margin between inputs */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button styles */
+button, .btn {
+    background: #048490;
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover, .btn:hover {
+    background: #77c1c1;
+}
+
+
+
+
+
+#contact {
+  background: #f8f9fa;
+  padding: 8rem 4rem;
+}
+
+#contact h2 {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#form-container {
+  width: 58%;
+  background: #fff;
+  padding: 3rem;
+}
+
+#address-container {
+  width: 38%;
+  background: #fff;
+  padding: 1.5rem;
+  margin-left: auto;
+}
+
+#form-container input, #form-container textarea {
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #090909;
+  width: calc(100% - 20px);
+  height: 43px;
+  font-family: "Roboto", sans-serif;
+}
+
+#form-container input[type="submit"] {
+  width: auto;
+}
+
+
+/* Services Section */
+#services {
+    padding: 10rem 10rem;
+    background: #fff;
+  }
+  
+  .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .service {
+    background: #b5e6df;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 300px;
+    flex: 1;
+  }
+  
+  .service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service h3 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .service p {
+    color: #555;
+  }
+  
+
+/* Footer Styles */
+footer {
+    background: #3f3c3c;
+    padding: 4rem 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  footer a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+  
+  footer a:hover {
+    color: #fff;
+  }
+  
+  footer .quick-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  footer small {
+    display: block;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  #form-container {
+    width: 100%;
+    padding: 2rem;
+  }
+  #address-container {
+    width: 100%;
+    margin-top: 2rem;
+  }
+}
