@@ -18,11 +18,13 @@
 
 
     <title>Contact Form</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
     <script type="text/javascript">
-        (function () {
-            // https://dashboard.emailjs.com/admin/account
-            emailjs.init('nRkiNarshSvzovvmK');
+        (function sendMail() {
+            emailjs.init({
+                publicKey: "nRkiNarshSvzovvmK",
+            });
         })();
     </script>
     <script type="text/javascript">
@@ -86,7 +88,7 @@
                         <label>Message</label>
                         <textarea name="message"></textarea>
                         <li><a href="#"></a></li>
-                        <input type="submit" value="Send Message" class="mu-post-btn" name="submit">
+                        <input type="submit" value="Send Message" onclick="sendMail()" class="mu-post-btn" name="submit">
 
                         <!-- <button class="rounded">Send Message</button>-->
                     </form>
