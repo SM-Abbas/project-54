@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -220,8 +219,7 @@
             white-space: nowrap;
         }
 
-        .file-preview img,
-        .file-preview object {
+        .file-preview img, .file-preview object {
             max-width: 100%;
             max-height: 150px;
             border-radius: 10px;
@@ -298,8 +296,7 @@
             margin-bottom: 12px;
         }
 
-        .documents-preview img,
-        .documents-preview object {
+        .documents-preview img, .documents-preview object {
             max-width: 100%;
             max-height: 150px;
             border-radius: 10px;
@@ -327,9 +324,9 @@
             display: flex;
             flex-direction: column;
         }
+
     </style>
 </head>
-
 <body>
     <div class="dashboard">
         <div class="sidebar">
@@ -350,7 +347,7 @@
                 </div>
             </div>
             <button class="new-chat" onclick="addNewChat()">New Chat</button>
-
+    
             <ul class="chat-list" id="chatList"></ul>
 
             <div class="documents-preview">
@@ -363,11 +360,10 @@
             <div class="chat-box" id="chatBox"></div>
             <div class="chat-input">
                 <span class="attach-btn" onclick="document.getElementById('fileInput').click()">📎</span>
-                <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.png,.jpg" style="display:none;"
-                    onchange="previewFile(event)">
-                <input type="text" id="messageInput" placeholder="Type your message...">
+                <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.png,.jpg" style="display:none;" onchange="previewFile(event)">
+                <input type="text" id="messageInput" placeholder="Type your message..." >
                 <button id="sendBtn" onclick="sendMessage()">Send</button>
-
+                
             </div>
         </div>
     </div>
@@ -379,20 +375,12 @@
 
         function addNewChat() {
             const chatList = document.getElementById("chatList");
-            const chatBox = document.getElementById("chatBox");
-            chatBox.innerHTML = "";
             const chatItem = document.createElement("li");
-            chatItem.textContent = "Chat " + (chatList.children.length + 1);
-            chatList.appendChild(chatItem);
+            const chatId = "Chat " + (chatList.children.length + 1);
             chatItem.innerHTML = chatId + ' <button class="delete-chat" onclick="deleteChat(this)">❌</button>';
             chatList.appendChild(chatItem);
             document.getElementById("currentChat").textContent = "Current Chat: " + chatId;
-            chatItem.onclick = function () {
-                document.getElementById("chatBox").innerHTML = "<p>Chat started: " + chatItem.textContent + "</p>";
-            }
         }
-
-
 
         function deleteChat(button) {
             button.parentElement.remove();
@@ -407,8 +395,7 @@
                 "What can I assist you with?",
                 "Need help? Just ask!",
                 "Hi there! Ask me anything.",
-                "How can I assist you with LegalMind?",
-                "great,let's see how can we work with it"
+                "How can I assist you with LegalMind?"
             ];
             if (messageInput.value.trim()) {
                 const userMessage = document.createElement("div");
@@ -416,7 +403,6 @@
                 userMessage.classList.add("message");
                 chatBox.appendChild(userMessage);
                 messageInput.value = "";
-                chatBox.scrollTop = chatBox.scrollHeight;
 
                 // Add a random default reply after sending a message
                 setTimeout(() => {
@@ -432,24 +418,12 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function () {
+                reader.onload = function() {
                     document.getElementById("profilePic").src = reader.result;
                 }
                 reader.readAsDataURL(file);
             }
         }
-
-        function toggleProfileMenu() {
-            const menu = document.getElementById("profileMenu");
-            menu.classList.toggle("active");
-            document.addEventListener("click", function (event) {
-                if (!menu.contains(event.target) && event.target.id !== "profilePic") {
-                    menu.classList.remove("active");
-                }
-            }, { once: true });
-        }
-
-
 
         function previewFile(event) {
             const filePreview = document.getElementById("documentPreviews");
@@ -470,7 +444,7 @@
                 filePreviewElement.type = "application/pdf";
             }
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function() {
                 filePreviewElement.src = reader.result;
                 fileItem.appendChild(filePreviewElement);
                 filePreview.appendChild(fileItem);
@@ -479,18 +453,9 @@
             reader.readAsDataURL(file);
         }
 
-        document.getElementById("uploadProfile").addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("profilePic").src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
+        document.getElementById("profilePic").addEventListener("click", () => {
+            document.getElementById("profileMenu").classList.toggle("active");
         });
-
     </script>
 </body>
-
 </html>
