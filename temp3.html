@@ -700,6 +700,13 @@ button:hover, .btn:hover {
       You might do something like:
       setProfilePictureFromEmail("john@example.com");
     */
+    document.getElementById("logout").addEventListener("click", () => {
+    signOut(auth).then(() => {
+        console.log("User signed out.");
+    }).catch((error) => {
+        console.error(error);
+    });
+});
   </script>
 </body>
 </html>
