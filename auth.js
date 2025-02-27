@@ -22,6 +22,7 @@ const provider = new GoogleAuthProvider();
 document.getElementById("google-login").addEventListener("click", () => {
     signInWithPopup(auth, provider)
         .then(async (result) => {
+            window.location.href = "temp2.html";
             const user = result.user;
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
@@ -29,7 +30,6 @@ document.getElementById("google-login").addEventListener("click", () => {
                 profilePic: user.photoURL
             });
             console.log("User signed in:", user);
-            window.location.href = "temp2.html";
         })
         .catch((error) => {
             console.error(error);
