@@ -54,6 +54,17 @@
       font-weight: bold;
       margin: 0;
     }
+    /* Metadata UI */
+    #metadataUI {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #e9ecef;
+      border-radius: 10px;
+    }
+    #metadataUI h3 {
+      margin-top: 0;
+    }
     .new-chat {
       width: 100%;
       padding: 12px;
@@ -414,6 +425,15 @@
       <div class="chat-header">
         <h1>LegalMind</h1>
       </div>
+      <!-- Metadata UI Section -->
+      <div id="metadataUI">
+        <h3>Model Metadata</h3>
+        <p><strong>Model Name:</strong> LegalMind Model</p>
+        <p><strong>Version:</strong> 1.0</p>
+        <p><strong>Input Shape:</strong> (None, 10)</p>
+        <p><strong>Output Shape:</strong> (None, 1)</p>
+        <p><strong>Description:</strong> This model predicts outcomes based on numeric input.</p>
+      </div>
       <div id="currentChat" style="margin-bottom: 15px; font-weight: bold;">Current Chat: None</div>
       <button class="new-chat" onclick="addNewChat()">New Chat</button>
       <ul class="chat-list" id="chatList"></ul>
@@ -675,13 +695,6 @@
       }
       reader.readAsDataURL(file);
     }
-
-    /* 
-      EXAMPLE USAGE:
-      Suppose the user logs in with "john@example.com"
-      You might do something like:
-      setProfilePictureFromEmail("john@example.com");
-    */
   </script>
 </body>
 </html>
