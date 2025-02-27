@@ -17,6 +17,55 @@
     <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBI4a2N54sk8KezV6Pd1ekFvBjFbJOSQFA",
+            authDomain: "legalmind-57478.firebaseapp.com",
+            projectId: "legalmind-57478",
+            storageBucket: "legalmind-57478.firebasestorage.app",
+            messagingSenderId: "16031728897",
+            appId: "1:16031728897:web:148ed8cc946ce56f47c700"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+        const provider = new GoogleAuthProvider();
+
+        // Google Sign-In
+        document.getElementById("google-login").addEventListener("click", () => {
+            signInWithPopup(auth, provider)
+                .then(async (result) => {
+                    const user = result.user;
+                    await setDoc(doc(db, "users", user.uid), {
+                        name: user.displayName,
+                        email: user.email,
+                        profilePic: user.photoURL
+                    });
+                    console.log("User signed in:", user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Logout
+        document.getElementById("logout").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                console.log("User signed out.");
+            }).catch((error) => {
+                console.error(error);
+            });
+        });
+    </script>
+
+
 </head>
 
 <body>
@@ -32,9 +81,11 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#" id="open-popup">Login</a></li>
+                    <li><a href="#" id="open-popup" style="display: block;">Login</a></li>
+                    <button id="logout" class="btn" style="display: none;">Logout</button>
                     <li id="close-flyout"><span class="fas fa-times"></span></li>
                 </ul>
+
             </nav>
         </div>
     </header>
@@ -42,8 +93,10 @@
     <section id="home">
         <div class="home-container">
             <h1>Welcome to Legal Mind</h1>
-            <p>Your trusted partner for legal document solutions. Simplify your legal needs with our AI-driven platform.</p>
-            
+
+            <p>Your trusted partner for legal document solutions. Simplify your legal needs with our AI-driven platform.
+            </p>
+
         </div>
     </section>
 
@@ -64,6 +117,13 @@
                         <button type="submit" class="btn">Login</button>
                     </form>
 
+                    <button id="google-login" class="btn">
+                        <img src="https://developers.google.com/identity/images/g-logo.png" width="20px">
+                        Login with Google
+                    </button>
+
+
+
                     <p><a href="#" id="go-to-signup" style="color: #007bff;">Don't have an account? Sign Up</a></p>
                 </div>
 
@@ -81,6 +141,12 @@
 
                         <button type="submit" class="btn">Signup</button>
                     </form>
+
+                    <button id="google-login" class="btn">
+                        <img src="https://developers.google.com/identity/images/g-logo.png" width="20px">
+                        signup with Google
+                    </button>
+
                     <p><a href="#" id="go-to-login" style="color: #007bff;">Already have an account? Login</a></p>
                 </div>
             </div>
@@ -90,37 +156,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('popup');
-    const openPopup = document.getElementById('open-popup');
-    const closePopup = document.getElementById('close-popup');
-    const goToSignup = document.getElementById('go-to-signup');
-    const goToLogin = document.getElementById('go-to-login');
-    const formContainer = document.querySelector('.form-container');
+            const popup = document.getElementById('popup');
+            const openPopup = document.getElementById('open-popup');
+            const closePopup = document.getElementById('close-popup');
+            const goToSignup = document.getElementById('go-to-signup');
+            const goToLogin = document.getElementById('go-to-login');
+            const formContainer = document.querySelector('.form-container');
 
-    openPopup?.addEventListener('click', () => {
-        popup?.classList.add('active');
-    });
+            openPopup?.addEventListener('click', () => {
+                popup?.classList.add('active');
+            });
 
-    closePopup?.addEventListener('click', () => {
-        popup?.classList.remove('active');
-    });
+            closePopup?.addEventListener('click', () => {
+                popup?.classList.remove('active');
+            });
 
-    window.addEventListener('click', (event) => {
-        if (event.target === popup) {
-            popup?.classList.remove('active');
-        }
-    });
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup?.classList.remove('active');
+                }
+            });
 
-    goToSignup?.addEventListener('click', (e) => {
-        e.preventDefault();
-        formContainer?.classList.add('flip');
-    });
+            goToSignup?.addEventListener('click', (e) => {
+                e.preventDefault();
+                formContainer?.classList.add('flip');
+            });
 
-    goToLogin?.addEventListener('click', (e) => {
-        e.preventDefault();
-        formContainer?.classList.remove('flip');
-    });
-});
+            goToLogin?.addEventListener('click', (e) => {
+                e.preventDefault();
+                formContainer?.classList.remove('flip');
+            });
+        });
 
     </script>
 </body>
@@ -212,6 +278,62 @@
 
         $(document).trigger('scroll');
     });
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginBtn = document.getElementById('open-popup');
+        const logoutBtn = document.getElementById('logout');
+
+        // Firebase Authentication State Listener
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is logged in
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'block';
+            } else {
+                // User is logged out
+                loginBtn.style.display = 'block';
+                logoutBtn.style.display = 'none';
+            }
+        });
+
+        // Logout Function
+        logoutBtn.addEventListener('click', function () {
+            firebase.auth().signOut().then(() => {
+                alert("You have been logged out.");
+            }).catch((error) => {
+                console.error("Logout error:", error);
+            });
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const googleLoginBtn = document.getElementById('google-login');
+
+        if (googleLoginBtn) {
+            googleLoginBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                const provider = new firebase.auth.GoogleAuthProvider();
+
+                firebase.auth().signInWithRedirect(provider); // Use Redirect Instead
+            });
+
+            // Handle Redirect Result
+            firebase.auth().getRedirectResult().then((result) => {
+                if (result.user) {
+                    console.log("User signed in:", result.user);
+                    alert(`Welcome, ${result.user.displayName}!`);
+                }
+            }).catch((error) => {
+                console.error("Error during login:", error.message);
+                alert("Login failed. Check the console for errors.");
+            });
+        }
+    });
+
 
 </script>
 
