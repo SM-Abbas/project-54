@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,82 +9,24 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="style1.css" type="text/css" rel="Stylesheet" />
-    <script src="script.js"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBI4a2N54sk8KezV6Pd1ekFvBjFbJOSQFA",
-            authDomain: "legalmind-57478.firebaseapp.com",
-            projectId: "legalmind-57478",
-            storageBucket: "legalmind-57478.firebasestorage.app",
-            messagingSenderId: "16031728897",
-            appId: "1:16031728897:web:148ed8cc946ce56f47c700"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-        const db = getFirestore();
-        const provider = new GoogleAuthProvider();
-
-        // Google Sign-In
-        document.getElementById("google-login").addEventListener("click", () => {
-            signInWithPopup(auth, provider)
-                .then(async (result) => {
-                    const user = result.user;
-                    await setDoc(doc(db, "users", user.uid), {
-                        name: user.displayName,
-                        email: user.email,
-                        profilePic: user.photoURL
-                    });
-                    console.log("User signed in:", user);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        });
-
-        // Logout
-        document.getElementById("logout").addEventListener("click", () => {
-            signOut(auth).then(() => {
-                console.log("User signed out.");
-            }).catch((error) => {
-                console.error(error);
-            });
-        });
-    </script>
-
-
-</head>
+    </head>
 
 <body>
-
-    <!--<div id="header-hero-container">-->
     <header>
         <div class="flex container">
             <a id="logo" href="index.html">LegalMind</a>
             <nav>
-
                 <ul id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#" id="open-popup" style="display: block;">Login</a></li>
+                    <li><a href="auth.html" id="open-loginpopup" style="display: block;">Login</a></li>
+                    <li><a href="auth.html" id="open-signuppopup" style="display: block;">Sign Up</a></li>
                     <button id="logout" class="btn" style="display: none;">Logout</button>
                     <li id="close-flyout"><span class="fas fa-times"></span></li>
                 </ul>
-
             </nav>
         </div>
     </header>
@@ -93,293 +34,186 @@
     <section id="home">
         <div class="home-container">
             <h1>Welcome to Legal Mind</h1>
-
-            <p>Your trusted partner for legal document solutions. Simplify your legal needs with our AI-driven platform.
-            </p>
-
+            <p>Your trusted partner for legal document solutions. Simplify your legal needs with our AI-driven platform.</p>
         </div>
     </section>
 
-    <!-- Popup -->
-    <div id="popup" class="popup">
+    <!-- Login Popup -->
+    <div id="loginpopup" class="popup">
         <div class="popup-content">
-            <span id="close-popup" class="close">&times;</span>
-            <div class="form-container">
+            <span id="close-loginpopup" class="close">&times;</span>
+            <div class="login-form-container">
                 <div id="login-section" class="active">
                     <h2>Login</h2>
                     <form id="login-form">
                         <label for="login-email">Email:</label>
                         <input type="email" id="login-email" name="email" required>
-
                         <label for="login-password">Password:</label>
                         <input type="password" id="login-password" name="password" required>
-
                         <button type="submit" class="btn">Login</button>
                     </form>
-
                     <button id="google-login" class="btn">
                         <img src="https://developers.google.com/identity/images/g-logo.png" width="20px">
                         Login with Google
                     </button>
-
-
-
                     <p><a href="#" id="go-to-signup" style="color: #007bff;">Don't have an account? Sign Up</a></p>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div id="signup-section">
+    <!-- Signup Popup -->
+    <div id="signuppopup" class="popup">
+        <div class="popup-content">
+            <span id="close-signuppopup" class="close">&times;</span>
+            <div class="singup-form-container">
+                <div id="signup-section" class="active">
                     <h2>Signup</h2>
                     <form id="signup-form">
                         <label for="signup-name">Name:</label>
                         <input type="text" id="signup-name" name="name" required>
-
                         <label for="signup-email">Email:</label>
                         <input type="email" id="signup-email" name="email" required>
-
-                        <label for="signup-password">Password:</label>
+                        <label for="signup-password">Password:</label>  
                         <input type="password" id="signup-password" name="password" required>
-
                         <button type="submit" class="btn">Signup</button>
                     </form>
-
-                    <button id="google-login" class="btn">
+                    <button id="google-signup" class="btn">
                         <img src="https://developers.google.com/identity/images/g-logo.png" width="20px">
-                        signup with Google
+                        Signup with Google
                     </button>
-
                     <p><a href="#" id="go-to-login" style="color: #007bff;">Already have an account? Login</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const popup = document.getElementById('popup');
-            const openPopup = document.getElementById('open-popup');
-            const closePopup = document.getElementById('close-popup');
+            const loginpopup = document.getElementById('loginpopup');
+            const openLoginPopup = document.getElementById('open-loginpopup');
+            const signuppopup = document.getElementById('signuppopup');
+            const openSignUpPopup = document.getElementById('open-signuppopup');
+            const closeLoginPopup = document.getElementById('close-loginpopup');
+            const closeSignUpPopup = document.getElementById('close-signuppopup');
             const goToSignup = document.getElementById('go-to-signup');
             const goToLogin = document.getElementById('go-to-login');
-            const formContainer = document.querySelector('.form-container');
 
-            openPopup?.addEventListener('click', () => {
-                popup?.classList.add('active');
+            openLoginPopup?.addEventListener('click', () => {
+                loginpopup?.classList.add('active');
             });
 
-            closePopup?.addEventListener('click', () => {
-                popup?.classList.remove('active');
+            closeLoginPopup?.addEventListener('click', () => {
+                loginpopup?.classList.remove('active');
+            });
+
+            openSignUpPopup?.addEventListener('click', () => {
+                signuppopup?.classList.add('active');
+            });
+
+            closeSignUpPopup?.addEventListener('click', () => {
+                signuppopup?.classList.remove('active');
             });
 
             window.addEventListener('click', (event) => {
-                if (event.target === popup) {
-                    popup?.classList.remove('active');
+                if (event.target === loginpopup) {
+                    loginpopup?.classList.remove('active');
+                }
+
+                if (event.target === signuppopup) {
+                    signuppopup?.classList.remove('active');
                 }
             });
 
             goToSignup?.addEventListener('click', (e) => {
                 e.preventDefault();
-                formContainer?.classList.add('flip');
+                loginpopup?.classList.remove('active');
+                signuppopup?.classList.add('active');
             });
 
             goToLogin?.addEventListener('click', (e) => {
                 e.preventDefault();
-                formContainer?.classList.remove('flip');
+                signuppopup?.classList.remove('active');
+                loginpopup?.classList.add('active');
             });
         });
-
     </script>
-</body>
-<footer>
-    <div class="flex container">
-        <div id="about" class="footer-about">
-            <h5>About Us</h5>
-            <p1>We are working on legal documents ML model</p1>
+
+    <footer>
+        <div class="flex container">
+            <div id="about" class="footer-about">
+                <h5>About Us</h5>
+                <p1>We are working on legal documents ML model</p1>
+            </div>
+            <div class="footer-quick-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#Sub.html">Plans</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-quick-links">
+                <h5>Follow Us</h5>
+                <ul>
+                    <li><a href="https://github.com/SM-Abbas">Github</a></li>
+                    <li><a href="https://www.instagram.com/abbasgamer_1/#">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/in/mohammad-suheb-abbas-026428220/">Linkedin</a></li>
+                </ul>
+            </div>
         </div>
+        <small>Copyright &copy; 2025 All rights reserved</small>
+    </footer>
 
-        <div class="footer-quick-links">
-            <h5>Quick Links</h5>
-            <ul>
-                <li><a href="#Sub.html">Plans</a></li>
+    <script src="auth.js" type="module"></script>
+    <script>
+        $(function () {
+            let headerElem = $('header');
+            let logo = $('#logo');
+            let navMenu = $('#nav-menu');
+            let navToggle = $('#nav-toggle');
 
-                <li><a href="services.html">Services</a></li>
+            navToggle.on('click', () => {
+                navMenu.css('right', '0');
+            });
 
-                <li><a href="contact.html">Contact Us</a></li>
-
-            </ul>
-        </div>
-
-
-        <div class="footer-quick-links">
-            <h5>Follow Us</h5>
-            <ul>
-                <li><a href="https://github.com/SM-Abbas">Github</a></li>
-                <li><a href="https://www.instagram.com/abbasgamer_1/#">Instagram</a></li>
-                <li><a href="https://www.linkedin.com/in/mohammad-suheb-abbas-026428220/">Linkedin</a></li>
-            </ul>
-
-        </div>
-
-    </div>
-
-
-    <small>
-        Copyright &copy; 2025 All rights reserved </a>
-    </small>
-</footer>
-
-
-
-<script src="/app.js"></script>
-
-<script>
-    $(function () {
-        let headerElem = $('header');
-        let logo = $('#logo');
-        let navMenu = $('#nav-menu');
-        let navToggle = $('#nav-toggle');
-
-
-
-        navToggle.on('click', () => {
-            navMenu.css('right', '0');
-        });
-
-        $('#close-flyout').on('click', () => {
-            navMenu.css('right', '-100%');
-        });
-
-        $(document).on('click', (e) => {
-            let target = $(e.target);
-            if (!(target.closest('#nav-toggle').length > 0 || target.closest('#nav-menu').length > 0)) {
+            $('#close-flyout').on('click', () => {
                 navMenu.css('right', '-100%');
-            }
-        });
-
-        $(document).scroll(() => {
-            let scrollTop = $(document).scrollTop();
-
-            if (scrollTop > 0) {
-                navMenu.addClass('is-sticky');
-                logo.css('color', '#000');
-                headerElem.css('background', '#fff');
-                navToggle.css('border-color', '#000');
-                navToggle.find('.strip').css('background-color', '#000');
-            } else {
-                navMenu.removeClass('is-sticky');
-                logo.css('color', '#b2aaaa');
-                headerElem.css('background', 'transparent');
-                navToggle.css('bordre-color', '#fff');
-                navToggle.find('.strip').css('background-color', '#fff');
-            }
-
-            headerElem.css(scrollTop >= 200 ? { 'padding': '0.5rem', 'box-shadow': '0 -4px 10px 1px #999' } : { 'padding': '1rem 0', 'box-shadow': 'none' });
-        });
-
-        $(document).trigger('scroll');
-    });
-
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const loginBtn = document.getElementById('open-popup');
-        const logoutBtn = document.getElementById('logout');
-        const googleLoginBtn = document.getElementById('google-login');
-        const signupForm = document.getElementById('signup-form');
-        const loginForm = document.getElementById('login-form');
-
-        // Firebase Authentication State Listener
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User is logged in
-                loginBtn.style.display = 'none';
-                logoutBtn.style.display = 'block';
-            } else {
-                // User is logged out
-                loginBtn.style.display = 'block';
-                logoutBtn.style.display = 'none';
-            }
-        });
-
-        // Logout Function
-        logoutBtn.addEventListener('click', function () {
-            firebase.auth().signOut().then(() => {
-                alert("You have been logged out.");
-                window.location.href = "index.html"; // Redirect to home after logout
-            }).catch((error) => {
-                console.error("Logout error:", error);
-            });
-        });
-
-        // Google Login
-        if (googleLoginBtn) {
-            googleLoginBtn.addEventListener('click', function (event) {
-                event.preventDefault();
-                const provider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithRedirect(provider);
             });
 
-            // Handle Redirect Result
-            firebase.auth().getRedirectResult().then((result) => {
-                if (result.user) {
-                    console.log("User signed in:", result.user);
-                    alert(`Welcome, ${result.user.displayName}!`);
-                    window.location.href = "temp2.html"; // Redirect after login
+            $(document).on('click', (e) => {
+                let target = $(e.target);
+                if (!(target.closest('#nav-toggle').length > 0 || target.closest('#nav-menu').length > 0)) {
+                    navMenu.css('right', '-100%');
                 }
-            }).catch((error) => {
-                console.error("Google login error:", error.message);
-                alert("Login failed. Check the console for errors.");
             });
-        }
 
-        // Firebase Email/Password Sign-Up
-        if (signupForm) {
-            signupForm.addEventListener('submit', function (event) {
-                event.preventDefault();
+            $(document).scroll(() => {
+                let scrollTop = $(document).scrollTop();
 
-                const name = document.getElementById('signup-name').value;
-                const email = document.getElementById('signup-email').value;
-                const password = document.getElementById('signup-password').value;
+                if (scrollTop > 0) {
+                    navMenu.addClass('is-sticky');
+                    logo.css('color', '#000');
+                    headerElem.css('background', '#fff');
+                    navToggle.css('border-color', '#000');
+                    navToggle.find('.strip').css('background-color', '#000');
+                } else {
+                    navMenu.removeClass('is-sticky');
+                    logo.css('color', '#b2aaaa');
+                    headerElem.css('background', 'transparent');
+                    navToggle.css('bordre-color', '#fff');
+                    navToggle.find('.strip').css('background-color', '#fff');
+                }
 
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        return userCredential.user.updateProfile({ displayName: name });
-                    })
-                    .then(() => {
-                        alert("Account created successfully!");
-                        window.location.href = "temp2.html"; // Redirect after signup
-                    })
-                    .catch((error) => {
-                        console.error("Sign-up error:", error.message);
-                        alert(error.message);
-                    });
+                headerElem.css(scrollTop >= 200 ? { 'padding': '0.5rem', 'box-shadow': '0 -4px 10px 1px #999' } : { 'padding': '1rem 0', 'box-shadow': 'none' });
             });
-        }
 
-        // Firebase Email/Password Login
-        if (loginForm) {
-            loginForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-
-                firebase.auth().signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        alert(`Welcome back, ${userCredential.user.displayName || "User"}!`);
-                        window.location.href = "temp2.html"; // Redirect after login
-                    })
-                    .catch((error) => {
-                        console.error("Login error:", error.message);
-                        alert(error.message);
-                    });
-            });
-        }
-    });
-
-</script>
-
-
+            $(document).trigger('scroll');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
 
 </html>
