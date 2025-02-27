@@ -238,9 +238,6 @@
     .nav-profile img:hover {
       transform: scale(1.1);
     }
-
-
-  
     /* Profile Menu for Nav Profile: vertical list */
     .profile-menu {
       display: none;
@@ -438,16 +435,16 @@
             <div class="dropdown">
               <a href="#" onclick="togglePlansDropdown(event)">Plans</a>
               <div class="dropdown-content" id="plansDropdown">
-                <a href="#">1 Month – ₹100</a>
-                <a href="#">3 Months – ₹250</a>
-                <a href="#">1 Year – ₹800</a>
+                <a href="#">1 Month – $10</a>
+                <a href="#">3 Months – $25</a>
+                <a href="#">1 Year – $50</a>
               </div>
             </div>
             <div class="dropdown">
               <a href="#" onclick="toggleModelsDropdown(event)">Models</a>
               <div class="dropdown-content" id="modelsDropdown">
                 <a href="#">Llama Model</a>
-                <a href="#">Dist-BERT Model</a>
+                <a href="#">ChatGPT Model</a>
               </div>
             </div>
             <a href="#">Contact Us</a>
@@ -456,9 +453,9 @@
             <img src="profile-pic.jpg" alt="Profile" id="profilePicNav" />
             <div class="profile-menu" id="profileMenu">
               <p><strong>User Name</strong></p>
-              <p>Subscription: Basic</p>
+              <p>Subscription: Premium</p>
               <button class="settings">Settings</button>
-              <button id="logout" class="settings" style="display: none;">Logout</button>
+              <button id="logout" class="btn" style="display: none;">Logout</button>
               <label class="switch">
                 <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
                 Dark Mode
@@ -686,13 +683,6 @@
       You might do something like:
       setProfilePictureFromEmail("john@example.com");
     */
-    document.getElementById("logout").addEventListener("click", () => {
-    signOut(auth).then(() => {
-        console.log("User signed out.");
-    }).catch((error) => {
-        console.error(error);
-    });
-});
   </script>
 </body>
 </html>
