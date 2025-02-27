@@ -148,7 +148,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* Navigation Bar above the Chat Box */
+    /* Navigation Bar above the Chat Box with rounded edges */
     .chat-nav {
       display: flex;
       justify-content: space-between;
@@ -157,6 +157,7 @@
       padding: 10px 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       margin-bottom: 10px;
+      border-radius: 10px;
       transition: background-color 0.3s;
     }
     .dark-mode .chat-nav {
@@ -246,7 +247,7 @@
       top: 60px;
       background: white;
       padding: 20px;
-      border-radius: 15px;
+      border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       width: 230px;
       transition: all 0.3s ease;
@@ -266,7 +267,7 @@
       margin-top: 10px;
       display: block;
       width: 100%;
-      border-radius: 12px;
+      border-radius: 8px;
       padding: 8px;
       border: 1px solid #ccc;
       font-size: 14px;
@@ -282,6 +283,18 @@
     .dark-mode .profile-menu input,
     .dark-mode .profile-menu p#uploadedFileName {
       color: #fff;
+    }
+    /* Settings button with rounded edges */
+    .profile-menu button.settings {
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .profile-menu button.settings:hover {
+      background: #0056b3;
     }
     .switch input {
       appearance: none;
