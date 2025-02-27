@@ -28,7 +28,7 @@ ul {
 
 
 #home {
-    background-image:url(img1.jpg) ;
+    background-image:url(img/img1.jpg) ;
     color: white;
     text-align: center;
     padding: 14rem 2rem;
@@ -389,5 +389,68 @@ footer {
   #address-container {
     width: 100%;
     margin-top: 2rem;
+  }
+}
+
+
+/* Responsive Navigation */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #282626;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: white;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+}
+
+/* Responsive Hero Section */
+@media (max-width: 768px) {
+  #home {
+    padding: 8rem 1rem;
+  }
+
+  .home-container h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Responsive Services Section */
+@media (max-width: 768px) {
+  .service {
+    flex: 1 1 100%;
+  }
+}
+
+/* Responsive Contact Section */
+@media (max-width: 768px) {
+  .contact-form, .contact-info {
+    flex: 1 1 100%;
+  }
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem;
   }
 }
