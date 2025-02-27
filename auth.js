@@ -22,7 +22,7 @@ const provider = new GoogleAuthProvider();
 document.getElementById("google-login").addEventListener("click", () => {
     signInWithPopup(auth, provider)
         .then(async (result) => {
-            window.location.href = "temp2.html";
+            window.location.href = "temp3.html";
             const user = result.user;
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
