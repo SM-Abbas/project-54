@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Login/Signup</title> 
+    <style> 
+        body { 
+            background-image: url('img1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #f4f4f4;
+            color: white;
+        } 
+        .container { 
+            background-size: cover;
+            background-position: center;
+            width: 400px;
+            backdrop-filter: blur(5px);
+            padding: 20px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 5px; 
+            text-align: center; 
+        } 
+        input { 
+            display: block; 
+            width: 94%; 
+            margin: 10px 0; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: saddlebrown;
+        } 
+        button { 
+            padding: 10px; 
+            width: 100%;
+            margin: 10px 0;
+            background-color: blue; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <h2>Login / Signup</h2> 
+        <input type="text" id="username" placeholder="Enter Username"> 
+        <input type="password" id="password" placeholder="Enter Password"> 
+        <button onclick="authenticate()">Submit</button> 
+        <button id="google-login" class="btn"> 
+            <img src="https://developers.google.com/identity/images/g-logo.png" width="20px"> 
+            Login with Google 
+        </button> 
+    </div> 
+ 
+    <script> 
+        function authenticate() { 
+            let username = document.getElementById("username").value; 
+            let password = document.getElementById("password").value; 
+            if (username && password) { 
+                localStorage.setItem("user", username); 
+                window.location.href = "temp2.html"; 
+            } else { 
+                alert("Please enter valid credentials"); 
+            } 
+        } 
+    </script> 
+    <script src="auth.js" type="module"></script> 
+</body> 
+</html>
